@@ -3,22 +3,25 @@
 
 namespace passwordChecker
 {
-    class Program
+    public class Program
     {
-        static void Main(string[] args)
+        public static void Main()
         {
-
 
             int minLength = 8;
             string uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
             string lowercase = "abcdefghijklmnopqrstuvwxyz";
             string digits = "1234567890";
             string specialChar = "~!@#%^&*-+";
+            // the below works although I don't think its the correct way...
+            string invalidPassword = "password";
+            string veryWeak = "1234";
 
-            Console.Write("Enter your password: ");
+            Console.Write("Enter a password: ");
             string password = Console.ReadLine();
 
             int score = 0;
+
             if (password.Length >= minLength)
             {
                 score++;
@@ -39,6 +42,16 @@ namespace passwordChecker
             {
                 score++;
             }
+            if (Contains(password, invalidPassword))
+            {
+                score = 0;
+            }
+            // Is this right?? I am defining what score is which doesn't seem like best practice. But it works.
+            if (Contains(password, veryWeak))
+            {
+                score = 0;
+            }
+
             Console.WriteLine(score);
 
             switch (score)
@@ -63,6 +76,10 @@ namespace passwordChecker
                 case 0:
                     Console.WriteLine("The password doesn't meet any requirements.");
                     break;
+
+                default:
+                    Console.WriteLine("Hmm, maybe a snake?");
+                    break;
             }
         }
 
@@ -72,4 +89,3 @@ namespace passwordChecker
         }
     }
 }
-
