@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using static passwordChecker.Rule;
 
 namespace passwordChecker
 {
@@ -17,12 +18,12 @@ namespace passwordChecker
         public int ScorePassword(string password)
 
         {
-     
+     // could use password.length >= Rule.minLength
 
             // the users password is rated using a scoring system. All passwords start at 0 and if they meet requirements the score will increase by 1. 
             int score = 0;
             // if the length of the password is greater than or equal to 8 then increase the score by 1.
-            if (password.Length >= _minLength)
+            if (password.Length >= Rule.minLength)
             {
                 score++;
             }
