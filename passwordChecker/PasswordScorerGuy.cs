@@ -48,7 +48,13 @@ namespace passwordChecker
 
             //  if the password is equal to 1234 (veryWeak), defined above - the score will be 0.
             MustEqualRule weakRule = new MustEqualRule(_veryWeak);
+            //if the password doesnt equals the weakrule or the invalid password add 1 to the score, if it does score is set to 0.
                 score = !weakRule.EvaluateScore(password) && !invalidRule.EvaluateScore(password) ? score++ : 0;
+
+            /*
+            invalidRule.resetRule("mitch");
+            score = !invalidRule.EvaluateScore(password) ? score++ : 0;
+            */
 
             return score;
        
